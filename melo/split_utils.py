@@ -107,7 +107,8 @@ def txtsplit(text, desired_length=100, max_length=200):
     text = re.sub(r'\n\n+', '\n', text)
     text = re.sub(r'\s+', ' ', text)
     text = re.sub(r'[""]', '"', text)
-    text = re.sub(r'([,.?!])(?!\d)', r'\1 ', text)
+    # Updated to allow for numbers with commas, and decimal points
+    text = re.sub(r'([?!]|([^0-9])[,.])(?!\d)', r'\1 ', text)
     text = re.sub(r'\s+', ' ', text)
     
     rv = []
